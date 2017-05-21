@@ -73,8 +73,8 @@ class TestMath(TestCase):
 
     def test_hmat_vec_mul(self):
         blocks = []
-        for i in xrange(2):
-            for j in xrange(2):
+        for i in range(2):
+            for j in range(2):
                 blocks.append(HMat(content=numpy.matrix(numpy.random.rand(2, 2)),
                                    shape=(2, 2),
                                    parent_index=(2*i, 2*j)
@@ -89,8 +89,8 @@ class TestMath(TestCase):
 
     def test_hmat_add_subtract(self):
         blocks = []
-        for i in xrange(3):
-            for j in xrange(3):
+        for i in range(3):
+            for j in range(3):
                 blocks.append(HMat(content=numpy.matrix(numpy.random.rand(2, 2)),
                                    shape=(2, 2),
                                    parent_index=(2 * i, 2 * j)
@@ -108,8 +108,8 @@ class TestMath(TestCase):
 
     def test_hmat_multiplication(self):
         blocks1 = []
-        for i in xrange(2):
-            for j in xrange(2):
+        for i in range(2):
+            for j in range(2):
                 blocks1.append(HMat(content=numpy.matrix(numpy.random.rand(2, 2)),
                                     shape=(2, 2),
                                     parent_index=(2 * i, 2 * j)
@@ -123,8 +123,8 @@ class TestMath(TestCase):
 
     def test_hmat_inversion(self):
         blocks1 = []
-        for i in xrange(2):
-            for j in xrange(2):
+        for i in range(2):
+            for j in range(2):
                 blocks1.append(HMat(content=numpy.matrix(numpy.random.rand(2, 2)),
                                     shape=(2, 2),
                                     parent_index=(2 * i, 2 * j)
@@ -135,8 +135,8 @@ class TestMath(TestCase):
         check = numpy.matrix(numpy.eye(4))
         self.assertAlmostEqual(numpy.linalg.norm(res.to_matrix() - check), 0, places=12)
         blocks2 = []
-        for i in xrange(2):
-            for j in xrange(2):
+        for i in range(2):
+            for j in range(2):
                 blocks2.append(HMat(content=numpy.matrix(numpy.random.rand(3, 3)),
                                     shape=(3, 3),
                                     parent_index=(3 * i, 3 * j)
@@ -147,8 +147,8 @@ class TestMath(TestCase):
         check = numpy.matrix(numpy.eye(6))
         self.assertAlmostEqual(numpy.linalg.norm(res.to_matrix() - check), 0, places=12)
         blocks3 = []
-        for i in xrange(3):
-            for j in xrange(3):
+        for i in range(3):
+            for j in range(3):
                 blocks3.append(HMat(content=numpy.matrix(numpy.random.rand(3, 3)),
                                     shape=(3, 3),
                                     parent_index=(3 * i, 3 * j)
@@ -162,11 +162,11 @@ class TestMath(TestCase):
         check = hmat3 * hmat3.inv()
         self.assertAlmostEqual(numpy.linalg.norm(check.to_matrix() - numpy.matrix(numpy.eye(9))), 0)
         blocks4 = []
-        for outer_i in xrange(2):
-            for outer_j in xrange(2):
+        for outer_i in range(2):
+            for outer_j in range(2):
                 inner_blocks = []
-                for i in xrange(3):
-                    for j in xrange(3):
+                for i in range(3):
+                    for j in range(3):
                         inner_blocks.append(HMat(content=numpy.matrix(numpy.random.rand(3, 3)),
                                                  shape=(3, 3),
                                                  parent_index=(3 * i, 3 * j)

@@ -109,8 +109,8 @@ def block_cluster_tree_plot(obj, filename=None, ticks=False, face_color='#133f52
             y_ticks = y_divisors[-4]
         else:
             y_ticks = y_divisors[-1]
-        axes.set_xticks(range(x_min, x_max + 2, x_ticks))
-        axes.set_yticks(range(y_min, y_max + 2, y_ticks))
+        axes.set_xticks(list(range(x_min, x_max + 2, x_ticks)))
+        axes.set_yticks(list(range(y_min, y_max + 2, y_ticks)))
     else:
         axes.set_xticks([])
         axes.set_yticks([])
@@ -164,7 +164,7 @@ def divisor_generator(n):
        on 2017.03.08
     """
     large_divisors = []
-    for i in xrange(1, int(math.sqrt(n) + 1)):
+    for i in range(1, int(math.sqrt(n) + 1)):
         if n % i == 0:
             yield i
             if i * i != n:

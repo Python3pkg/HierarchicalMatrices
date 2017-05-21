@@ -669,28 +669,28 @@ class HMat(object):
         if row_sequence != col_sequence or any(block_check):
             raise ValueError('not all squares')
         rows = len(row_sequence)
-        for l in xrange(rows):
+        for l in range(rows):
             out_matrix[l * bls,  l * bls] = self_copy[l * bls, l * bls].inv()
-            for j in xrange(l):
+            for j in range(l):
                 out_matrix[l * bls, j * bls] = out_matrix[l * bls, l * bls] * out_matrix[l * bls, j * bls]
-            for j in xrange(l + 1, rows):
+            for j in range(l + 1, rows):
                 self_copy[l * bls, j * bls] = out_matrix[l * bls, l * bls] * self_copy[l * bls, j * bls]
-            for i in xrange(l + 1, rows):
-                for j in xrange(l+1):
+            for i in range(l + 1, rows):
+                for j in range(l+1):
                     out_matrix[i * bls,
                                j * bls] = out_matrix[i * bls,
                                                      j * bls] - self_copy[i * bls,
                                                                           l * bls] * out_matrix[l * bls,
                                                                                                 j * bls]
-                for j in xrange(l+1, rows):
+                for j in range(l+1, rows):
                     self_copy[i * bls,
                               j * bls] = self_copy[i * bls,
                                                    j * bls] - self_copy[i * bls,
                                                                         l * bls] * self_copy[l * bls,
                                                                                              j * bls]
-        for l in xrange(rows - 1, -1, -1):
-            for i in xrange(l - 1, -1, -1):
-                for j in xrange(rows):
+        for l in range(rows - 1, -1, -1):
+            for i in range(l - 1, -1, -1):
+                for j in range(rows):
                     out_matrix[i * bls,
                                j * bls] = out_matrix[i * bls,
                                                      j * bls] - self_copy[i * bls,

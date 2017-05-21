@@ -25,7 +25,7 @@ import scipy.integrate as integrate
 
 def model_1d(n=2 ** 5, max_rank=1, n_min=1):
     """"""
-    midpoints = [((i + 0.5)/n,) for i in xrange(n)]
+    midpoints = [((i + 0.5)/n,) for i in range(n)]
     intervals = {p: [p[0] - 0.5/n, p[0] + 0.5/n] for p in midpoints}
     grid = HierMat.Grid(points=midpoints, supports=intervals)
     cluster = HierMat.Cluster(grid=grid)
@@ -46,7 +46,7 @@ def model_1d(n=2 ** 5, max_rank=1, n_min=1):
                                  )
     hmat_full = hmat.to_matrix()
     x = numpy.ones((n, 1))
-    for i in xrange(1, n, 2):
+    for i in range(1, n, 2):
         x[i] = 2
     galerkin_full = galerkin_1d_full(block_cluster_tree)
     HierMat.export(hmat, form='bin', out_file='hmat.bin')
@@ -84,16 +84,16 @@ def galerkin_1d_rank_k(block_cluster_tree, max_rank):
     upper_boundary_x = block_cluster_tree.left_clustertree.get_grid_item_support(last_point_x)[-1]
     taylor_midpoint = float(lower_boundary_x + upper_boundary_x)/2
     # x_interpolation
-    for k in xrange(max_rank):
+    for k in range(max_rank):
         def integral_function_x(x):
             return (x - taylor_midpoint)**k
 
-        for i in xrange(x_length):
+        for i in range(x_length):
             midpoint = block_cluster_tree.left_clustertree[i]
             lower, upper = block_cluster_tree.left_clustertree.get_grid_item_support(midpoint)
             left_matrix[i, k] = integrate.fixed_quad(integral_function_x, lower, upper)[0]
 
-        for j in xrange(y_length):
+        for j in range(y_length):
             midpoint = block_cluster_tree.right_clustertree[j]
             lower, upper = block_cluster_tree.right_clustertree.get_grid_item_support(midpoint)
             if k == 0:
@@ -120,10 +120,10 @@ def galerkin_1d_full(block_cluster_tree):
     """
     x_length, y_length = block_cluster_tree.shape()
     out_matrix = numpy.matrix(numpy.zeros((x_length, y_length)))
-    for i in xrange(x_length):
+    for i in range(x_length):
         midpoint_x = block_cluster_tree.left_clustertree[i]
         x_lower, x_upper = block_cluster_tree.left_clustertree.get_grid_item_support(midpoint_x)
-        for j in xrange(y_length):
+        for j in range(y_length):
             midpoint_y = block_cluster_tree.right_clustertree[j]
             y_lower, y_upper = block_cluster_tree.right_clustertree.get_grid_item_support(midpoint_y)
             inner_integral = lambda x: integrate.fixed_quad(lambda y: kernel(x, y), y_lower, y_upper)[0]

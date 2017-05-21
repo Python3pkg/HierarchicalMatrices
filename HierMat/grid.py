@@ -122,7 +122,7 @@ class GridIterator(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self._counter >= len(self.grid):
             raise StopIteration
         else:

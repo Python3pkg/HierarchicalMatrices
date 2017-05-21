@@ -43,9 +43,9 @@ lim2 = 2 ** 4
 # points2 = points2left + points2top + points2right + points2bottom
 
 points2 = [np.array([math.cos(2 * math.pi * (float(i)/lim2)), math.sin(2 * math.pi * (float(i)/lim2))])
-           for i in xrange(lim2)]
+           for i in range(lim2)]
 
-links2 = [[points2[i + 1]] for i in xrange(len(points2) - 1)]
+links2 = [[points2[i + 1]] for i in range(len(points2) - 1)]
 links2.append([points2[0]])
 
 grid2 = Grid(points2, links2)

@@ -113,7 +113,7 @@ class SplitableIterator(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self.counter >= len(self.obj):
             raise StopIteration
         else:

@@ -18,7 +18,7 @@ class Cluster(object):
         :type indices: list
         """
         self.grid = grid
-        self.indices = range(len(grid)) if not indices else indices
+        self.indices = list(range(len(grid))) if not indices else indices
 
     def __getitem__(self, item):
         """Get item
@@ -142,7 +142,7 @@ class ClusterIterator(object):
     def __iter__(self):
         return self
 
-    def next(self):
+    def __next__(self):
         if self._counter >= len(self.cluster):
             raise StopIteration
         else:
